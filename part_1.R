@@ -17,24 +17,23 @@ library(furrr)
 ##########################################################################
 # First we are going to do some example runs of the base model
 
-
 #########################################################################
 # Run the model with an example population and no vaccination
 no_vaccine <- nimue::run(country = "United Kingdom",
                          max_vaccine = 0,
                          R0 = 2)
 
-# What raw output does this produce?
+# What raw output does this produce? hint: try head() or str()
 
 #########################################################################
-# Format the output selecting infection and deaths
+# Format the output using an inbuilt function, selecting infection and deaths
 out1 <-
   format(no_vaccine,
          compartments = NULL,
          summaries = c("infections", "deaths")) %>%
   mutate(Name = "No vaccine")
 
-# Now examine the outputs
+# Now examine the outputs again
 
 
 # Plot outputs
@@ -76,7 +75,7 @@ ggplot(pd, aes(x = t, y = value, group = Name, col = Name)) +
   theme_bw()
 
 #########################################################################
-# Exercise to work through together
+# Exercise to work through together/individually
 
 # What happens if you try varying the following?
 # - vary dose availability

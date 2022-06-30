@@ -1,8 +1,12 @@
-# some basics in R
+# some basics in R - we will work through these together and discuss
 
+###################################################################
 # first some basic objects and operations
+
+# assignment
 x <- 1
 
+# create a vector
 y <- 1:10
 class(y)
 
@@ -28,7 +32,7 @@ hist(runif(50))
 # a data.frame is a table where each column can have a different type
 my_data_frame <- data.frame(row = 1:2,
                 country = c("AUS", "GBR"),
-                population = c(25, 67),
+                population_mill = c(25, 67),
                 health_system = c("Medicare", "NHS"),
                 southern_hemisphere = c(TRUE, FALSE)
                 )

@@ -35,7 +35,7 @@ scenarios <- expand_grid(R0 = R0,
                          timing1 = timing1,
                          timing2 = timing2)
 # run the model
-system.time({out <- future_pmap(scenarios, run_scenario, .progress = TRUE)})
+system.time({out <- future_pmap(scenarios, run_scenario, .progress = TRUE, .options = furrr_options(seed = T))})
 
 # format the output
 df <- bind_cols(scenarios, bind_rows(out)) %>%

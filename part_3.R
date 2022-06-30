@@ -44,7 +44,7 @@ scenarios <- expand_grid(R0 = R0,
                          timing1 = timing1,
                          timing2 = timing2)
 # run the model
-system.time({out <- future_pmap(scenarios, run_scenario, .progress = TRUE)})
+system.time({out <- future_pmap(scenarios, run_scenario, .progress = TRUE, .options = furrr_options(seed = T))})
 
 # format the output
 df <- bind_cols(scenarios, bind_rows(out)) %>%
@@ -88,7 +88,7 @@ scenarios <- expand_grid(R0 = R0,
                          timing1 = timing1,
                          timing2 = timing2)
 # run the model
-system.time({out <- future_pmap(scenarios, run_scenario, .progress = TRUE)})
+system.time({out <- future_pmap(scenarios, run_scenario, .progress = TRUE, .options = furrr_options(seed = T))})
 
 # format the output
 df <- bind_cols(scenarios, bind_rows(out)) %>%
@@ -102,6 +102,8 @@ ggplot(data = df, aes(x = t, y = value, col = factor(efficacy))) +
   theme_bw() +
   scale_color_viridis_d(end = 0.8)
 
+###########################################################################################
+
 # what about total events (deaths or infections) over the time period?
 df_summary <- df %>%
   group_by(efficacy, compartment) %>%
@@ -114,6 +116,4 @@ ggplot(data = df_summary, aes(x = factor(efficacy), y = value, fill = factor(eff
   scale_fill_viridis_d(end = 0.8) +
   labs(x = "coverage", y = "total events")
 
-###########################################################################################
-# what about impact in different income settings?
 
