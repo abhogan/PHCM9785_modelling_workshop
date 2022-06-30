@@ -39,19 +39,17 @@ install.packages('tidyverse')
 library(tidyverse)
 
 # read in some data (pertussis data from WHO (https://apps.who.int/gho/data/node.main.WHS3_43?lang=en))
-pertussis <- read_csv("data/pertussis.csv")
+pertussis <- read_csv("data/pertussis_formatted.csv")
 
 head(pertussis)
-nrow()
-head()
-
-df <- pertussis %>%
-  pivot_longer(cols = '2020':'1974') %>%
-  mutate(year = as.numeric(name)) %>%
-  select(Country, year, value)
+nrow(pertussis)
+head(pertussis)
+unique(pertussis$Country)
 
 # filter a particular country (or exclude a country)
 
 # filter to a particular year or range of years
 
-# 
+# select particular columns
+
+# mutate and summarise
