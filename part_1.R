@@ -1,8 +1,10 @@
 # Install and load the packages we need!
 # install.packages("tidyverse")
-# install.packages("nimue")
 # install.packages("purrr")
 # install.packages("furrr")
+install.packages('devtools')
+library(devtools)
+install_github("mrc-ide/nimue")
 
 library(tidyverse)
 library(purrr)
@@ -21,9 +23,11 @@ library(furrr)
 # Run the model with an example population and no vaccination
 no_vaccine <- nimue::run(country = "United Kingdom",
                          max_vaccine = 0,
-                         R0 = 2)
+                         R0 = 2.5)
 
 # What raw output does this produce? hint: try head() or str()
+head(no_vaccine)
+str(no_vaccine)
 
 #########################################################################
 # Format the output using an inbuilt function, selecting infection and deaths
@@ -34,7 +38,7 @@ out1 <-
   mutate(Name = "No vaccine")
 
 # Now examine the outputs again
-
+head(out1)
 
 # Plot outputs
 ggplot(data = out1, aes(x = t, y = value, group = Name, col = Name)) +

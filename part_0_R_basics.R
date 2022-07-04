@@ -39,7 +39,7 @@ my_data_frame <- data.frame(row = 1:2,
 
 ############################################################################
 # one of the suites of packages useful for data analysis in R is called the tidyverse
-install.packages('tidyverse')
+install.packages("tidyverse")
 library(tidyverse)
 
 # read in some data (pertussis data from WHO (https://apps.who.int/gho/data/node.main.WHS3_43?lang=en))
@@ -47,13 +47,35 @@ pertussis <- read_csv("data/pertussis_formatted.csv")
 
 head(pertussis)
 nrow(pertussis)
-head(pertussis)
+ncol(pertussis)
+tail(pertussis)
+
+pertussis$year
+unique(pertussis$year)
+
 unique(pertussis$Country)
 
 # filter a particular country (or exclude a country)
+filter(pertussis, Country == "Uganda")
 
 # filter to a particular year or range of years
+filter(pertussis, year == 2018)
+
+filter(pertussis, year %in% c(2018, 2019, 2020))
 
 # select particular columns
+select(pertussis, Country)
+pertussis$Country
 
 # mutate and summarise
+x <- pertussis %>%
+  group_by(Country) %>%
+  mutate(country_sum = sum(value, na.rm = T))
+  
+y <- pertussis %>%
+  group_by(Country) %>%
+  summarise(country_sum = sum(value, na.rm = T))
+
+y <- pertussis
+yy <- group_by(y, Country)
+yyy <- summarise(yyy, country_sum = sum(value, na.rm = T))

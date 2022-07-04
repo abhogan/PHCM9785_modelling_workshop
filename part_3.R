@@ -73,7 +73,7 @@ ggplot(data = df_summary, aes(x = factor(coverage), y = value, fill = factor(cov
 ###########################################################################################
 # what about impact of changing vaccine efficacy?
 coverage <- 0.6
-efficacy <- seq(0.3, 1, by = 0.05)
+efficacy <- seq(0.3, 1, by = 0.1)
 
 scenarios <- expand_grid(R0 = R0,
                          reduction1 = reduction1,
@@ -114,6 +114,6 @@ ggplot(data = df_summary, aes(x = factor(efficacy), y = value, fill = factor(eff
   facet_wrap(~compartment, scales = "free") +
   theme_bw() +
   scale_fill_viridis_d(end = 0.8) +
-  labs(x = "coverage", y = "total events")
+  labs(x = "efficacy", y = "total events")
 
 
